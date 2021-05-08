@@ -43,6 +43,10 @@ export const PrimaryButton = styled.button`
   padding-block: 0.8em;
   width: 100%;
   ${space}
+
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 export const SecondaryButton = styled.button`
@@ -54,4 +58,8 @@ export const SecondaryButton = styled.button`
   padding-block: 0.8em;
   width: 100%;
   ${space}
+
+  &:hover {
+    cursor: pointer;
+  }
 `
