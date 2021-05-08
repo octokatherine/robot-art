@@ -4,6 +4,7 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
+const userRouter = require('./routers/userRouter')
 
 const app = express()
 
@@ -38,6 +39,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(express.json())
 app.use(express.static(path.join(__dirname, '.', 'public')))
+app.use('/users', userRouter)
 
 passport.serializeUser(function (user, done) {
   done(null, user.id)
@@ -54,7 +56,6 @@ app.post(
   passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login',
-    failureFlash: true,
   })
 )
 
