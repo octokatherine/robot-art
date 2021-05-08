@@ -18,6 +18,7 @@ const InputField = styled.input`
 `
 
 const InputLabel = styled.label`
+  font-family: sans-serif;
   color: ${(props) => props.theme.palette.gray2};
   background-color: white;
   position: absolute;
