@@ -4,6 +4,12 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 const Nav = () => {
+  const logout = () => {
+    fetch('/logout', {
+      method: 'DELETE',
+    })
+  }
+
   return (
     <Box
       display="flex"
@@ -20,7 +26,9 @@ const Nav = () => {
       </Box>
       <Box display="flex" alignItems="center">
         <PlainLink to="/admin">Admin</PlainLink>
-        <PlainLink to="/logout">Log Out</PlainLink>
+        <PlainLink onClick={logout} to="/login">
+          Log Out
+        </PlainLink>
       </Box>
     </Box>
   )

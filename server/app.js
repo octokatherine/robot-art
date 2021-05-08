@@ -39,7 +39,7 @@ app.post('/login', async (req, res) => {
   })
 })
 
-app.get('/logout', async (req, res) => {
+app.delete('/logout', async (req, res) => {
   res.cookie('token', '').sendStatus(200)
 })
 
