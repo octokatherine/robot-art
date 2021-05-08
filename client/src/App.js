@@ -4,10 +4,14 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Robots from './pages/Robots'
+import Nav from './components/Nav'
 
 const GlobalStyle = createGlobalStyle`
   body {
     background: #F4F6F8;
+    margin: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
   }
 `
 
@@ -37,6 +41,7 @@ const App = () => {
             <Signup />
           </Route>
           <Route path="/robots">
+            <Nav />
             <Robots />
           </Route>
         </Switch>
