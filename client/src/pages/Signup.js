@@ -2,12 +2,13 @@ import { useState } from 'react'
 import { ReactComponent as Logo } from '../images/mr-logo.svg'
 import { PrimaryButton, SecondaryButton, Box, Input } from '../components/base'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 const Signup = () => {
   const [fullname, setFullname] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [success, setSuccess] = useState(false)
 
   const handleChange = (e) => {
     if (e.target.name === 'username') {
@@ -30,7 +31,7 @@ const Signup = () => {
     })
       .then((res) => {
         if (res.status === 201) {
-          console.log('success')
+          setSuccess(true)
         } else {
           const error = new Error(res.error)
           throw error
@@ -44,6 +45,7 @@ const Signup = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
+        {success && <Redirect to="/robots" />}
         <Box
           display="flex"
           flexDirection="column"

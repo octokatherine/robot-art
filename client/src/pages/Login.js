@@ -42,7 +42,7 @@ const Login = () => {
 
   return (
     <div>
-      {success && <Redirect to="/" />}
+      {success && <Redirect to="/robots" />}
       <form onSubmit={handleSubmit}>
         <Box
           display="flex"

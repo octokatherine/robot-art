@@ -1,8 +1,9 @@
 import { ThemeProvider } from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import Robots from './pages/Robots'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -26,11 +27,17 @@ const App = () => {
       <GlobalStyle />
       <Router>
         <Switch>
+          <Route exact path="/">
+            <Redirect to="/robots" />
+          </Route>
           <Route path="/login">
             <Login />
           </Route>
-          <Route path="/Signup">
+          <Route path="/signup">
             <Signup />
+          </Route>
+          <Route path="/robots">
+            <Robots />
           </Route>
         </Switch>
       </Router>
