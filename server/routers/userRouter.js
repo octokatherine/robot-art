@@ -1,5 +1,6 @@
 const prisma = require('../prismaConnection')
 const express = require('express')
+const withAuth = require('../middleware')
 const bcrypt = require('bcrypt')
 const saltRounds = 10
 
@@ -17,6 +18,11 @@ userRouter.post('/', async (req, res) => {
     })
     res.status(201).json(user)
   })
+})
+
+userRouter.get('/', withAuth, async (req, res) => {
+  const users = await prisma.user.findMany()
+  res.status(200).json(users)
 })
 
 module.exports = userRouter
