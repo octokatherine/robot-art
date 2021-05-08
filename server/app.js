@@ -39,6 +39,10 @@ app.post('/login', async (req, res) => {
   })
 })
 
+app.get('/logout', async (req, res) => {
+  res.cookie('token', '').sendStatus(200)
+})
+
 app.get('/checkToken', withAuth, function (req, res) {
   res.sendStatus(200)
 })
