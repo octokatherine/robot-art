@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const userRouter = require('./routers/userRouter')
+const robotRouter = require('./routers/robotRouter')
 const prisma = require('./prismaConnection')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
@@ -14,6 +15,7 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, '.', 'public')))
 
 app.use('/users', userRouter)
+app.use('/robots', robotRouter)
 
 app.post('/login', async (req, res) => {
   const { username, fullname, password } = req.body
