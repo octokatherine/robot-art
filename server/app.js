@@ -1,11 +1,11 @@
 const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
-const session = require('express-session')
 const userRouter = require('./routers/userRouter')
 const prisma = require('./prismaConnection')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const withAuth = require('./middleware')
 
 const app = express()
 
@@ -37,6 +37,10 @@ app.post('/login', async (req, res) => {
       res.cookie('token', token, { httpOnly: true }).sendStatus(200)
     }
   })
+})
+
+app.get('/checkToken', withAuth, function (req, res) {
+  res.sendStatus(200)
 })
 
 app.get('/*', (req, res) => {
