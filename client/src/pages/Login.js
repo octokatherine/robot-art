@@ -28,7 +28,6 @@ const Login = () => {
     })
       .then((res) => {
         if (res.status === 200) {
-          console.log('successful login')
           setSuccess(true)
         } else {
           const error = new Error(res.error)
