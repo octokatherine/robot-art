@@ -67,15 +67,15 @@ const App = () => {
           <Route path="/login">
             <Login token={token} setToken={setToken} />
           </Route>
-          <Route token={token} setToken={setToken} path="/signup">
-            <Signup />
+          <Route path="/signup">
+            <Signup token={token} setToken={setToken} />
           </Route>
           <Route path="/robots">
-            <Nav />
+            <Nav token={token} setToken={setToken} />
             <Robots robots={robots} setRobots={setRobots} />
           </Route>
           <Route path="/admin">
-            <Nav />
+            <Nav token={token} setToken={setToken} />
             <Admin robots={robots} setRobots={setRobots} />
           </Route>
         </Switch>

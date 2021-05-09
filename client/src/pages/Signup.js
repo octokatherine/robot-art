@@ -83,12 +83,12 @@ const Signup = ({ token, setToken }) => {
             value={password}
             onChange={handleChange}
           />
-          <StyledLink to="/login">
-            <PrimaryButton mt={3}>Log In</PrimaryButton>
-          </StyledLink>
-          <SecondaryButton mt={3} type="submit">
+          <PrimaryButton mt={3} type="submit">
             Register
-          </SecondaryButton>
+          </PrimaryButton>
+          <StyledLink to="/login">
+            <SecondaryButton mt={3}>Log In</SecondaryButton>
+          </StyledLink>
         </Box>
       </form>
     </div>

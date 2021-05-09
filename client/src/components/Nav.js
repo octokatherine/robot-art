@@ -1,13 +1,13 @@
 import { Box } from './base/'
 import { ReactComponent as Logo } from '../images/mr-logo-small.svg'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
-const Nav = () => {
+const Nav = ({ token, setToken }) => {
   const logout = () => {
     fetch('/logout', {
       method: 'DELETE',
-    })
+    }).then(() => setToken(null))
   }
 
   return (
@@ -19,6 +19,7 @@ const Nav = () => {
       py="24px"
       px={[3, 4]}
     >
+      {!token && <Redirect to="/login" />}
       <Box display="flex" alignItems="center">
         <StyledLogo />
         <BoldLink to="/robots">Robots</BoldLink>
