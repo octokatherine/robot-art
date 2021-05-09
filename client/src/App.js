@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
@@ -6,6 +7,7 @@ import Signup from './pages/Signup'
 import Robots from './pages/Robots'
 import Admin from './pages/Admin'
 import Nav from './components/Nav'
+import axios from 'axios'
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -33,6 +35,15 @@ const theme = {
 }
 
 const App = () => {
+  const [robots, setRobots] = useState([])
+
+  useEffect(() => {
+    axios
+      .get('/robots')
+      .then((response) => setRobots(response.data))
+      .catch((err) => console.log(err))
+  }, [])
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
@@ -49,11 +60,11 @@ const App = () => {
           </Route>
           <Route path="/robots">
             <Nav />
-            <Robots />
+            <Robots robots={robots} setRobots={setRobots} />
           </Route>
           <Route path="/admin">
             <Nav />
-            <Admin />
+            <Admin robots={robots} setRobots={setRobots} />
           </Route>
         </Switch>
       </Router>

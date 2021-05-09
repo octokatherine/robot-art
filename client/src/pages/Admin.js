@@ -4,7 +4,7 @@ import { Box, Card, Input, PrimaryButton } from '../components/base'
 import styled from 'styled-components'
 import withAuth from '../components/withAuth'
 
-const Admin = () => {
+const Admin = ({ robots, setRobots }) => {
   const uploadInput = useRef(null)
   const [url, setUrl] = useState('')
   const [newRobotName, setNewRobotName] = useState('')
@@ -70,45 +70,65 @@ const Admin = () => {
   return (
     <Box px={[3, 4]}>
       <h1>Admin</h1>
-      <Card p={3} display="flex" flexDirection="column" alignItems="center">
-        <StyledForm onSubmit={addRobot}>
-          <StyledH3>Add Robot</StyledH3>
-          <Box>
-            <Input
-              mb={4}
-              label="Name"
-              name="name"
-              type="text"
-              value={newRobotName}
-              onChange={handleTextInputChange}
-            />
-            <Box height="208px">
-              <input onChange={handleFileInputChange} ref={uploadInput} type="file" />
+      <Box display="flex" flexWrap="wrap" justifyContent="center" maxWidth="1300px" mx="auto">
+        <Card p={3} mx={3} mb={3} display="flex" flexDirection="column" alignItems="center">
+          <Form onSubmit={addRobot}>
+            <H3>Add Robot</H3>
+            <Box>
+              <Input
+                mb={4}
+                label="Name"
+                name="name"
+                type="text"
+                value={newRobotName}
+                onChange={handleTextInputChange}
+              />
+              <Box height="208px">
+                <input onChange={handleFileInputChange} ref={uploadInput} type="file" />
+              </Box>
+              <Box display="flex" justifyContent="space-between" alignItems="center" mt={4}>
+                <ClearButton>Clear</ClearButton>
+                <PrimaryButton disabled={!(url && newRobotName)} type="submit">
+                  Add Robot
+                </PrimaryButton>
+              </Box>
             </Box>
-            <Box display="flex" justifyContent="space-between" alignItems="center" mt={4}>
-              <ClearButton>Clear</ClearButton>
-              <PrimaryButton disabled={!(url && newRobotName)} type="submit">
-                Add Robot
-              </PrimaryButton>
-            </Box>
-          </Box>
-        </StyledForm>
-      </Card>
+          </Form>
+        </Card>
+        {robots.map((robot) => (
+          <Card
+            key={robot.id}
+            p={3}
+            mx={3}
+            mb={3}
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+          >
+            <H3>{robot.name}</H3>
+            <Image src={robot.image} />
+          </Card>
+        ))}
+      </Box>
     </Box>
   )
 }
 
-const StyledH3 = styled.h3`
+const H3 = styled.h3`
   text-align: center;
   margin-bottom: 48px;
 `
 
-const StyledForm = styled.form`
+const Form = styled.form`
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+`
+
+const Image = styled.img`
+  height: 320px;
 `
 
 const ClearButton = styled.a`

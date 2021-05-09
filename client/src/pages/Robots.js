@@ -1,6 +1,6 @@
 import withAuth from '../components/withAuth'
 
-const Robots = () => {
+const Robots = ({ robots, setRobots }) => {
   return <h1>Robots</h1>
 }
 
