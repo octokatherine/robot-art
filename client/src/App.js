@@ -8,11 +8,17 @@ import Admin from './pages/Admin'
 import Nav from './components/Nav'
 
 const GlobalStyle = createGlobalStyle`
+  html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
   body {
     background: #F4F6F8;
     margin: 0;
     font-family: sans-serif;
-    box-sizing: border-box;
+    color: ${(props) => props.theme.palette.gray3};
   }
 `
 

@@ -1,21 +1,27 @@
 import { useState, useRef } from 'react'
 import axios from 'axios'
+import { Box, Card, Input } from '../components/base'
 
 const Admin = () => {
   const uploadInput = useRef(null)
   const [url, setUrl] = useState('')
+  const [newRobotName, setNewRobotName] = useState('')
 
-  const handleChange = (ev) => {
-    setUrl('')
+  const handleTextInputChange = (e) => {
+    setNewRobotName(e.target.value)
   }
 
-  const handleUpload = (ev) => {
+  const handleFileInputChange = () => {
+    setUrl('')
+    handleUpload()
+  }
+
+  const handleUpload = () => {
     let file = uploadInput.current.files[0]
     // Split the filename to get the name and type
     let fileParts = uploadInput.current.files[0].name.split('.')
     let fileName = fileParts[0]
     let fileType = fileParts[1]
-    console.log('Preparing the upload')
     axios
       .post('/sign_s3', {
         fileName: fileName,
@@ -26,7 +32,6 @@ const Admin = () => {
         var signedRequest = returnData.signedRequest
         var url = returnData.url
         setUrl(url)
-        console.log('Recieved a signed request ' + signedRequest)
 
         var options = {
           headers: {
@@ -36,7 +41,6 @@ const Admin = () => {
         axios
           .put(signedRequest, file, options)
           .then((result) => {
-            console.log('Response from s3')
             console.log('response :>> ', response)
           })
           .catch((error) => {
@@ -49,14 +53,22 @@ const Admin = () => {
   }
 
   return (
-    <div>
-      <center>
-        <h1>UPLOAD A FILE</h1>
-        <input onChange={handleChange} ref={uploadInput} type="file" />
-        <br />
-        <button onClick={handleUpload}>UPLOAD</button>
-      </center>
-    </div>
+    <Box px={[3, 4]}>
+      <h1>Admin</h1>
+      <Card p={3} display="flex" flexDirection="column" alignItems="center">
+        <h3>Add Robot</h3>
+        <Input
+          mb={4}
+          label="Name"
+          name="name"
+          type="text"
+          value={newRobotName}
+          onChange={handleTextInputChange}
+        />
+        <input onChange={handleFileInputChange} ref={uploadInput} type="file" />
+      </Card>
+    </Box>
   )
 }
+
 export default Admin
