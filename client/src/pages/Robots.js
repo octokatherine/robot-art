@@ -18,7 +18,9 @@ const Robots = ({ robots, setRobots }) => {
       >
         {robots.map((robot) => (
           <RobotCard key={robot.id} name={robot.name} image={robot.image}>
-            <PrimaryButton width="150px">Vote</PrimaryButton>
+            <PrimaryButton width="150px" disabled={robot.votes.length > 0}>
+              {robot.votes.length > 0 ? 'Vote Cast' : 'Vote'}
+            </PrimaryButton>
           </RobotCard>
         ))}
       </Box>
