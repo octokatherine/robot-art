@@ -2,13 +2,25 @@ import { useState, useRef } from 'react'
 import axios from 'axios'
 import { Box, Card, Input, PrimaryButton } from '../components/base'
 import styled from 'styled-components'
+import withAuth from '../components/withAuth'
 
 const Admin = () => {
   const uploadInput = useRef(null)
   const [url, setUrl] = useState('')
   const [newRobotName, setNewRobotName] = useState('')
 
-  const addRobot = () => {}
+  const addRobot = (e) => {
+    e.preventDefault()
+    axios
+      .post('/robots', {
+        name: newRobotName,
+        image: url,
+      })
+      .then((response) => {
+        setUrl('')
+        setNewRobotName('')
+      })
+  }
 
   const handleTextInputChange = (e) => {
     setNewRobotName(e.target.value)
@@ -44,7 +56,7 @@ const Admin = () => {
         axios
           .put(signedRequest, file, options)
           .then((result) => {
-            console.log('response :>> ', response)
+            console.log(response)
           })
           .catch((error) => {
             console.log('ERROR ' + JSON.stringify(error))
@@ -104,4 +116,4 @@ const ClearButton = styled.a`
   text-decoration: underline;
 `
 
-export default Admin
+export default withAuth(Admin)
