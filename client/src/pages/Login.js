@@ -4,10 +4,9 @@ import { PrimaryButton, SecondaryButton, Box, Input } from '../components/base'
 import styled from 'styled-components'
 import { Link, Redirect } from 'react-router-dom'
 
-const Login = () => {
+const Login = ({ token, setToken }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [success, setSuccess] = useState(false)
 
   const handleChange = (e) => {
     if (e.target.name === 'username') {
@@ -26,14 +25,8 @@ const Login = () => {
         'Content-Type': 'application/json',
       },
     })
-      .then((res) => {
-        if (res.status === 200) {
-          setSuccess(true)
-        } else {
-          const error = new Error(res.error)
-          throw error
-        }
-      })
+      .then((res) => res.json())
+      .then((data) => setToken(data.token))
       .catch((err) => {
         console.error(err)
       })
@@ -41,7 +34,7 @@ const Login = () => {
 
   return (
     <div>
-      {success && <Redirect to="/robots" />}
+      {token && <Redirect to="/robots" />}
       <form onSubmit={handleSubmit}>
         <Box
           display="flex"

@@ -3,12 +3,12 @@ import { ReactComponent as Logo } from '../images/mr-logo.svg'
 import { PrimaryButton, SecondaryButton, Box, Input } from '../components/base'
 import styled from 'styled-components'
 import { Link, Redirect } from 'react-router-dom'
+import axios from 'axios'
 
-const Signup = () => {
+const Signup = ({ token, setToken }) => {
   const [fullname, setFullname] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [success, setSuccess] = useState(false)
 
   const handleChange = (e) => {
     if (e.target.name === 'username') {
@@ -30,12 +30,15 @@ const Signup = () => {
       },
     })
       .then((res) => {
-        if (res.status === 201) {
-          setSuccess(true)
-        } else {
-          const error = new Error(res.error)
-          throw error
-        }
+        fetch('/login', {
+          method: 'POST',
+          body: JSON.stringify({ username, password }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => setToken(data.token))
       })
       .catch((err) => {
         console.error(err)
@@ -45,7 +48,7 @@ const Signup = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        {success && <Redirect to="/robots" />}
+        {token && <Redirect to="/robots" />}
         <Box
           display="flex"
           flexDirection="column"

@@ -35,14 +35,17 @@ const theme = {
 }
 
 const App = () => {
+  const [token, setToken] = useState(null)
   const [robots, setRobots] = useState([])
 
   useEffect(() => {
-    axios
-      .get('/robots')
-      .then((response) => setRobots(response.data))
-      .catch((err) => console.log(err))
-  }, [])
+    if (token) {
+      axios
+        .get('/robots')
+        .then((response) => setRobots(response.data))
+        .catch((err) => console.log(err))
+    }
+  }, [token])
 
   return (
     <ThemeProvider theme={theme}>
@@ -53,9 +56,9 @@ const App = () => {
             <Redirect to="/robots" />
           </Route>
           <Route path="/login">
-            <Login />
+            <Login token={token} setToken={setToken} />
           </Route>
-          <Route path="/signup">
+          <Route token={token} setToken={setToken} path="/signup">
             <Signup />
           </Route>
           <Route path="/robots">
