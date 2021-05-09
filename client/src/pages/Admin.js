@@ -70,16 +70,10 @@ const Admin = ({ robots, setRobots }) => {
         display="grid"
         gridTemplateColumns="repeat(auto-fit, minmax(400px, max-content))"
         gridGap={3}
-        justifyContent="center"
-      >
-        {/* <Box
-        display="flex"
-        flexWrap="wrap"
-        justifyContent="center"
-        alignItems="flex-start"
         maxWidth="1300px"
         mx="auto"
-      > */}
+        justifyContent="center"
+      >
         <Card p={3} mx={3} mb={3} display="flex" flexDirection="column" alignItems="center">
           <Form onSubmit={addRobot}>
             <H3>Add Robot</H3>
