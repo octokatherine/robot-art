@@ -7,6 +7,7 @@ const prisma = require('./prismaConnection')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const withAuth = require('./middleware')
+const { sign_s3 } = require('./awsUpload')
 
 const app = express()
 
@@ -16,6 +17,8 @@ app.use(express.static(path.join(__dirname, '.', 'public')))
 
 app.use('/users', userRouter)
 app.use('/robots', robotRouter)
+
+app.post('/sign_s3', sign_s3)
 
 app.post('/login', async (req, res) => {
   const { username, fullname, password } = req.body

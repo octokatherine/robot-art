@@ -17,7 +17,7 @@ const Nav = () => {
       justifyContent="space-between"
       bg="white"
       py="24px"
-      px={4}
+      px={[3, 4]}
     >
       <Box display="flex" alignItems="center">
         <StyledLogo />

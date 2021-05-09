@@ -4,14 +4,21 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Robots from './pages/Robots'
+import Admin from './pages/Admin'
 import Nav from './components/Nav'
 
 const GlobalStyle = createGlobalStyle`
+  html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
   body {
     background: #F4F6F8;
     margin: 0;
     font-family: sans-serif;
-    box-sizing: border-box;
+    color: ${(props) => props.theme.palette.gray3};
   }
 `
 
@@ -43,6 +50,10 @@ const App = () => {
           <Route path="/robots">
             <Nav />
             <Robots />
+          </Route>
+          <Route path="/admin">
+            <Nav />
+            <Admin />
           </Route>
         </Switch>
       </Router>
