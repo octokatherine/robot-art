@@ -11,6 +11,10 @@ const Robots = ({ robots, setRobots }) => {
     axios.get('/votes/me').then((res) => setUserVotes(res.data.map((vote) => vote.robotId)))
   }, [])
 
+  const castVote = (robotId) => {
+    axios.post(`/votes/${robotId}`).then((res) => console.log(res))
+  }
+
   return (
     <Box px={[3, 4]}>
       <h1>Robots</h1>
@@ -26,7 +30,11 @@ const Robots = ({ robots, setRobots }) => {
       >
         {robots.map((robot) => (
           <RobotCard key={robot.id} name={robot.name} image={robot.image}>
-            <PrimaryButton width="150px" disabled={userVotes.includes(robot.id)}>
+            <PrimaryButton
+              width="150px"
+              disabled={userVotes.includes(robot.id)}
+              onClick={() => castVote(robot.id)}
+            >
               {userVotes.includes(robot.id) ? 'Vote Cast' : 'Vote'}
             </PrimaryButton>
           </RobotCard>

@@ -11,10 +11,11 @@ voteRouter.get('/me', withAuth, async (req, res) => {
   res.status(200).json(votes)
 })
 
-voteRouter.post('/', withAuth, async (req, res) => {
+voteRouter.post('/:robotId', withAuth, async (req, res) => {
   const newVote = await prisma.votes.create({
     data: {
-      ...req.body,
+      userId: req.userId,
+      robotId: Number(req.params.robotId),
     },
   })
 
