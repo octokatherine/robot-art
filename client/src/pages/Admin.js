@@ -99,7 +99,12 @@ const Admin = ({ robots, setRobots }) => {
           </Form>
         </Card>
         {robots.map((robot) => (
-          <RobotCard key={robot.id} name={robot.name} image={robot.image}></RobotCard>
+          <RobotCard key={robot.id} name={robot.name} image={robot.image}>
+            <Box display="flex" justifyContent="space-between">
+              <PrimaryButton>Edit</PrimaryButton>
+              <SecondaryButton>Delete</SecondaryButton>
+            </Box>
+          </RobotCard>
         ))}
       </Box>
     </Box>

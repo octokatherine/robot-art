@@ -47,6 +47,15 @@ const App = () => {
     }
   }, [token])
 
+  useEffect(() => {
+    fetch('/checkToken')
+      .then((res) => res.json())
+      .then((data) => setToken(data.token))
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />

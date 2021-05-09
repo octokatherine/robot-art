@@ -6,6 +6,7 @@ const RobotCard = ({ name, image, children }) => {
     <Card p={3} display="flex" flexDirection="column" alignItems="center">
       <H3>{name}</H3>
       <Image src={image} />
+      {children}
     </Card>
   )
 }

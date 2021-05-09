@@ -49,7 +49,7 @@ app.delete('/logout', async (req, res) => {
 })
 
 app.get('/checkToken', withAuth, function (req, res) {
-  res.sendStatus(200)
+  res.status(200).json({ token: req.cookies.token })
 })
 
 app.get('/*', (req, res) => {
