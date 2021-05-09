@@ -74,7 +74,7 @@ const Admin = ({ robots, setRobots }) => {
         mx="auto"
         justifyContent="center"
       >
-        <Card p={3} mx={3} mb={3} display="flex" flexDirection="column" alignItems="center">
+        <Card p={3} display="flex" flexDirection="column" alignItems="center">
           <Form onSubmit={addRobot}>
             <H3>Add Robot</H3>
             <Box>
@@ -86,9 +86,8 @@ const Admin = ({ robots, setRobots }) => {
                 value={newRobotName}
                 onChange={handleTextInputChange}
               />
-              <Box height="208px">
-                <input onChange={handleFileInputChange} ref={uploadInput} type="file" />
-              </Box>
+              <input onChange={handleFileInputChange} ref={uploadInput} type="file" />
+              <Box height="208px"></Box>
               <Box display="flex" justifyContent="space-between" alignItems="center" mt={4}>
                 <ClearButton>Clear</ClearButton>
                 <PrimaryButton disabled={!(url && newRobotName)} type="submit">
@@ -99,15 +98,7 @@ const Admin = ({ robots, setRobots }) => {
           </Form>
         </Card>
         {robots.map((robot) => (
-          <Card
-            key={robot.id}
-            p={3}
-            mx={3}
-            mb={3}
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-          >
+          <Card key={robot.id} p={3} display="flex" flexDirection="column" alignItems="center">
             <H3>{robot.name}</H3>
             <Image src={robot.image} />
           </Card>
