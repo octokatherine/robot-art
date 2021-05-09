@@ -66,7 +66,20 @@ const Admin = ({ robots, setRobots }) => {
   return (
     <Box px={[3, 4]}>
       <h1>Admin</h1>
-      <Box display="flex" flexWrap="wrap" justifyContent="center" maxWidth="1300px" mx="auto">
+      <Box
+        display="grid"
+        gridTemplateColumns="repeat(auto-fit, minmax(400px, max-content))"
+        gridGap={3}
+        justifyContent="center"
+      >
+        {/* <Box
+        display="flex"
+        flexWrap="wrap"
+        justifyContent="center"
+        alignItems="flex-start"
+        maxWidth="1300px"
+        mx="auto"
+      > */}
         <Card p={3} mx={3} mb={3} display="flex" flexDirection="column" alignItems="center">
           <Form onSubmit={addRobot}>
             <H3>Add Robot</H3>

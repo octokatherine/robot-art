@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { space, layout, color, flexbox, position } from 'styled-system'
+import { space, layout, color, flexbox, grid, position } from 'styled-system'
 
 export const Box = styled.div`
   ${space}
@@ -7,6 +7,7 @@ export const Box = styled.div`
   ${color}
   ${flexbox}
   ${position}
+  ${grid}
 `
 
 export const Card = styled.div`
