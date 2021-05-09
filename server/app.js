@@ -21,7 +21,7 @@ app.use('/robots', robotRouter)
 app.post('/sign_s3', sign_s3)
 
 app.post('/login', async (req, res) => {
-  const { username, fullname, password } = req.body
+  const { username, password } = req.body
   const user = await prisma.user.findFirst({
     where: {
       username: username,
@@ -35,7 +35,7 @@ app.post('/login', async (req, res) => {
     } else if (!result) {
       res.status(401).json({ error: 'Incorrect username or password' })
     } else {
-      const payload = { username, fullname }
+      const payload = { username, fullname: user.fullname, userId: user.id }
       const token = jwt.sign(payload, process.env.SECRET, {
         expiresIn: '1h',
       })

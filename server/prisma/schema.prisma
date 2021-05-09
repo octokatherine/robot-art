@@ -13,10 +13,22 @@ model User {
   username String  @unique @db.VarChar(255)
   password String  @db.VarChar(255)
   isAdmin  Boolean @db.Boolean
+  votes    Votes[]
 }
 
 model Robot {
-  id    Int    @id @default(autoincrement())
-  name  String @db.VarChar(255)
-  image String @db.VarChar(255)
+  id    Int     @id @default(autoincrement())
+  name  String  @db.VarChar(255)
+  image String  @db.VarChar(255)
+  votes Votes[]
+}
+
+model Votes {
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int // relation scalar field (used in the `@relation` attribute above)
+  robot     Robot    @relation(fields: [robotId], references: [id])
+  robotId   Int // relation scalar field (used in the `@relation` attribute above)
+  createdAt DateTime @default(now())
+
+  @@id([userId, robotId])
 }
