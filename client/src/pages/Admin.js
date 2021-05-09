@@ -64,6 +64,15 @@ const Admin = ({ robots, setRobots }) => {
       })
   }
 
+  const onDelete = (id) => {
+    axios
+      .delete(`/robots/${id}`)
+      .then(() => {
+        setRobots((prev) => prev.filter((robot) => robot.id !== id))
+      })
+      .catch((err) => console.log(err))
+  }
+
   return (
     <Box px={[3, 4]}>
       <h1>Admin</h1>
@@ -100,9 +109,11 @@ const Admin = ({ robots, setRobots }) => {
         </Card>
         {robots.map((robot) => (
           <RobotCard key={robot.id} name={robot.name} image={robot.image}>
-            <Box display="flex" justifyContent="space-between">
-              <PrimaryButton>Edit</PrimaryButton>
-              <SecondaryButton>Delete</SecondaryButton>
+            <Box width={1} display="flex" justifyContent="space-between">
+              <PrimaryButton mr={2}>Edit</PrimaryButton>
+              <SecondaryButton ml={2} onClick={() => onDelete(robot.id)}>
+                Delete
+              </SecondaryButton>
             </Box>
           </RobotCard>
         ))}

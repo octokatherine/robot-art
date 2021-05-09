@@ -21,10 +21,17 @@ robotRouter.get('/', withAuth, async (req, res) => {
 
 robotRouter.put('/:id', withAuth, async (req, res) => {
   const updatedRobot = await prisma.robot.update({
-    where: { id: req.params.id },
+    where: { id: Number(req.params.id) },
     data: { ...req.body },
   })
   res.status(200).json(updatedRobot)
+})
+
+robotRouter.delete('/:id', withAuth, async (req, res) => {
+  const deletedRobot = await prisma.robot.delete({
+    where: { id: Number(req.params.id) },
+  })
+  res.status(200).json(deletedRobot)
 })
 
 module.exports = robotRouter
