@@ -48,9 +48,9 @@ const App = () => {
   }, [token])
 
   useEffect(() => {
-    fetch('/checkToken')
-      .then((res) => res.json())
-      .then((data) => setToken(data.token))
+    axios
+      .get('/checkToken')
+      .then((res) => setToken(res.data.token))
       .catch((err) => {
         console.log(err)
       })

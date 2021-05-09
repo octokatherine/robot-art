@@ -2,12 +2,11 @@ import { Box } from './base/'
 import { ReactComponent as Logo } from '../images/mr-logo-small.svg'
 import styled from 'styled-components'
 import { Link, Redirect } from 'react-router-dom'
+import axios from 'axios'
 
 const Nav = ({ token, setToken }) => {
   const logout = () => {
-    fetch('/logout', {
-      method: 'DELETE',
-    }).then(() => setToken(null))
+    axios.delete('/logout').then(() => setToken(null))
   }
 
   return (

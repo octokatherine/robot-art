@@ -22,23 +22,10 @@ const Signup = ({ token, setToken }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    fetch('/users', {
-      method: 'POST',
-      body: JSON.stringify({ username, password, fullname }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => {
-        fetch('/login', {
-          method: 'POST',
-          body: JSON.stringify({ username, password }),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-          .then((res) => res.json())
-          .then((data) => setToken(data.token))
+    axios
+      .post('/users', { username, password, fullname })
+      .then(() => {
+        axios.post('/login', { username, password }).then((res) => setToken(res.data))
       })
       .catch((err) => {
         console.error(err)

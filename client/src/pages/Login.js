@@ -3,6 +3,7 @@ import { ReactComponent as Logo } from '../images/mr-logo.svg'
 import { PrimaryButton, SecondaryButton, Box, Input } from '../components/base'
 import styled from 'styled-components'
 import { Link, Redirect } from 'react-router-dom'
+import axios from 'axios'
 
 const Login = ({ token, setToken }) => {
   const [username, setUsername] = useState('')
@@ -18,15 +19,9 @@ const Login = ({ token, setToken }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    fetch('/login', {
-      method: 'POST',
-      body: JSON.stringify({ username, password }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setToken(data.token))
+    axios
+      .post('/login', { username, password })
+      .then((res) => setToken(res.data.token))
       .catch((err) => {
         console.error(err)
       })
