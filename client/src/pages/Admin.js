@@ -1,11 +1,14 @@
 import { useState, useRef } from 'react'
 import axios from 'axios'
-import { Box, Card, Input } from '../components/base'
+import { Box, Card, Input, PrimaryButton } from '../components/base'
+import styled from 'styled-components'
 
 const Admin = () => {
   const uploadInput = useRef(null)
   const [url, setUrl] = useState('')
   const [newRobotName, setNewRobotName] = useState('')
+
+  const addRobot = () => {}
 
   const handleTextInputChange = (e) => {
     setNewRobotName(e.target.value)
@@ -56,19 +59,49 @@ const Admin = () => {
     <Box px={[3, 4]}>
       <h1>Admin</h1>
       <Card p={3} display="flex" flexDirection="column" alignItems="center">
-        <h3>Add Robot</h3>
-        <Input
-          mb={4}
-          label="Name"
-          name="name"
-          type="text"
-          value={newRobotName}
-          onChange={handleTextInputChange}
-        />
-        <input onChange={handleFileInputChange} ref={uploadInput} type="file" />
+        <StyledForm onSubmit={addRobot}>
+          <StyledH3>Add Robot</StyledH3>
+          <Box>
+            <Input
+              mb={4}
+              label="Name"
+              name="name"
+              type="text"
+              value={newRobotName}
+              onChange={handleTextInputChange}
+            />
+            <Box height="208px">
+              <input onChange={handleFileInputChange} ref={uploadInput} type="file" />
+            </Box>
+            <Box display="flex" justifyContent="space-between" alignItems="center" mt={4}>
+              <ClearButton>Clear</ClearButton>
+              <PrimaryButton disabled={!(url && newRobotName)} type="submit">
+                Add Robot
+              </PrimaryButton>
+            </Box>
+          </Box>
+        </StyledForm>
       </Card>
     </Box>
   )
 }
+
+const StyledH3 = styled.h3`
+  text-align: center;
+  margin-bottom: 48px;
+`
+
+const StyledForm = styled.form`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
+
+const ClearButton = styled.a`
+  margin-inline: 44px;
+  text-decoration: underline;
+`
 
 export default Admin

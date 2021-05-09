@@ -14,6 +14,7 @@ export const Card = styled.div`
   box-shadow: 0px 9px 15px -9px rgba(0, 0, 0, 0.12);
   border-radius: 8px;
   width: 400px;
+  height: 530px;
   ${space}
   ${layout}
   ${color}
@@ -54,10 +55,17 @@ export const PrimaryButton = styled.button`
   font-size: 1.2rem;
   padding-block: 0.8em;
   width: 100%;
+  border: none;
   ${space}
 
   &:hover {
     cursor: pointer;
+    background: ${(props) => props.theme.palette.gray2};
+  }
+
+  &:disabled {
+    background: ${(props) => props.theme.palette.gray1};
+    color: #41424266;
   }
 `
 
