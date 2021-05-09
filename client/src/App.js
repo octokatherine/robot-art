@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Robots from './pages/Robots'
+import Admin from './pages/Admin'
 import Nav from './components/Nav'
 
 const GlobalStyle = createGlobalStyle`
@@ -43,6 +44,10 @@ const App = () => {
           <Route path="/robots">
             <Nav />
             <Robots />
+          </Route>
+          <Route path="/admin">
+            <Nav />
+            <Admin />
           </Route>
         </Switch>
       </Router>
