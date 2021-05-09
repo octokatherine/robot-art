@@ -19,6 +19,7 @@ const Admin = ({ robots, setRobots }) => {
       .then((response) => {
         setUrl('')
         setNewRobotName('')
+        setRobots((prev) => [...prev, response.data])
       })
   }
 
@@ -53,14 +54,9 @@ const Admin = ({ robots, setRobots }) => {
             'Content-Type': fileType,
           },
         }
-        axios
-          .put(signedRequest, file, options)
-          .then((result) => {
-            console.log(response)
-          })
-          .catch((error) => {
-            console.log('ERROR ' + JSON.stringify(error))
-          })
+        axios.put(signedRequest, file, options).catch((error) => {
+          console.log('ERROR ' + JSON.stringify(error))
+        })
       })
       .catch((error) => {
         console.log(JSON.stringify(error))
