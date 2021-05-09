@@ -1,8 +1,16 @@
+import { useState, useEffect } from 'react'
 import { Box, PrimaryButton } from '../components/base'
 import withAuth from '../components/withAuth'
 import RobotCard from '../components/RobotCard'
+import axios from 'axios'
 
 const Robots = ({ robots, setRobots }) => {
+  const [userVotes, setUserVotes] = useState([])
+
+  useEffect(() => {
+    axios.get('/votes/me').then((res) => setUserVotes(res.data.map((vote) => vote.robotId)))
+  }, [])
+
   return (
     <Box px={[3, 4]}>
       <h1>Robots</h1>
@@ -18,8 +26,8 @@ const Robots = ({ robots, setRobots }) => {
       >
         {robots.map((robot) => (
           <RobotCard key={robot.id} name={robot.name} image={robot.image}>
-            <PrimaryButton width="150px" disabled={robot.votes.length > 0}>
-              {robot.votes.length > 0 ? 'Vote Cast' : 'Vote'}
+            <PrimaryButton width="150px" disabled={userVotes.includes(robot.id)}>
+              {userVotes.includes(robot.id) ? 'Vote Cast' : 'Vote'}
             </PrimaryButton>
           </RobotCard>
         ))}

@@ -3,6 +3,7 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const userRouter = require('./routers/userRouter')
 const robotRouter = require('./routers/robotRouter')
+const voteRouter = require('./routers/voteRouter')
 const prisma = require('./prismaConnection')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
@@ -17,6 +18,7 @@ app.use(express.static(path.join(__dirname, '.', 'public')))
 
 app.use('/users', userRouter)
 app.use('/robots', robotRouter)
+app.use('/votes', voteRouter)
 
 app.post('/sign_s3', sign_s3)
 
