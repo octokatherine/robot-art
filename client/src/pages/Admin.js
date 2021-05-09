@@ -1,8 +1,9 @@
 import { useState, useRef } from 'react'
 import axios from 'axios'
-import { Box, Card, Input, PrimaryButton } from '../components/base'
+import { Box, Card, Input, PrimaryButton, SecondaryButton } from '../components/base'
 import styled from 'styled-components'
 import withAuth from '../components/withAuth'
+import RobotCard from '../components/RobotCard'
 
 const Admin = ({ robots, setRobots }) => {
   const uploadInput = useRef(null)
@@ -98,10 +99,7 @@ const Admin = ({ robots, setRobots }) => {
           </Form>
         </Card>
         {robots.map((robot) => (
-          <Card key={robot.id} p={3} display="flex" flexDirection="column" alignItems="center">
-            <H3>{robot.name}</H3>
-            <Image src={robot.image} />
-          </Card>
+          <RobotCard key={robot.id} name={robot.name} image={robot.image}></RobotCard>
         ))}
       </Box>
     </Box>
@@ -119,10 +117,6 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`
-
-const Image = styled.img`
-  height: 320px;
 `
 
 const ClearButton = styled.a`
