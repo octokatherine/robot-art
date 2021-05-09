@@ -1,11 +1,19 @@
-import { Card } from './base'
+import { Box, Card } from './base'
 import styled from 'styled-components'
 
 const RobotCard = ({ name, image, children }) => {
   return (
-    <Card p={3} display="flex" flexDirection="column" alignItems="center">
-      <H3>{name}</H3>
-      <Image src={image} />
+    <Card
+      p={3}
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="space-between"
+    >
+      <Box>
+        <H3>{name}</H3>
+        <Image src={image} />
+      </Box>
       {children}
     </Card>
   )
@@ -13,7 +21,7 @@ const RobotCard = ({ name, image, children }) => {
 
 const H3 = styled.h3`
   text-align: center;
-  margin-bottom: 48px;
+  margin-bottom: 32px;
 `
 
 const Image = styled.img`
