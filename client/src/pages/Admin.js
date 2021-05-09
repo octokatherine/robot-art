@@ -83,6 +83,7 @@ const Admin = ({ robots, setRobots }) => {
         maxWidth="1300px"
         mx="auto"
         justifyContent="center"
+        justifyItems="center"
       >
         <Card p={3} display="flex" flexDirection="column" alignItems="center">
           <Form onSubmit={addRobot}>
