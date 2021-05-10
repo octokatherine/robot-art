@@ -32,6 +32,8 @@ const InputField = styled.input`
   height: 64px;
   border-radius: 8px;
   border: 1px solid ${(props) => props.theme.palette.gray1};
+  font-size: 1.22em;
+  padding-inline: 24px;
   ${space}
 `
 
