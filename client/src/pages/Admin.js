@@ -82,7 +82,7 @@ const Admin = ({ robots, setRobots }) => {
         gridGap={3}
         maxWidth="1300px"
         mx="auto"
-        mt={5}
+        my={5}
         justifyContent="center"
         justifyItems="center"
       >
