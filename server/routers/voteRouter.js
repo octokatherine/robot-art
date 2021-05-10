@@ -4,6 +4,14 @@ const withAuth = require('../middleware')
 
 const voteRouter = express.Router()
 
+voteRouter.get('/', withAuth, async (req, res) => {
+  const votes = await prisma.votes.groupBy({
+    by: ['robotId'],
+    count: true,
+  })
+  res.status(200).json(votes)
+})
+
 voteRouter.get('/me', withAuth, async (req, res) => {
   const votes = await prisma.votes.findFirst({
     where: { userId: req.userId },
