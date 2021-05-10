@@ -3,6 +3,7 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const userRouter = require('./routers/userRouter')
 const robotRouter = require('./routers/robotRouter')
+const voteRouter = require('./routers/voteRouter')
 const prisma = require('./prismaConnection')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
@@ -17,11 +18,12 @@ app.use(express.static(path.join(__dirname, '.', 'public')))
 
 app.use('/users', userRouter)
 app.use('/robots', robotRouter)
+app.use('/votes', voteRouter)
 
 app.post('/sign_s3', sign_s3)
 
 app.post('/login', async (req, res) => {
-  const { username, fullname, password } = req.body
+  const { username, password } = req.body
   const user = await prisma.user.findFirst({
     where: {
       username: username,
@@ -35,7 +37,7 @@ app.post('/login', async (req, res) => {
     } else if (!result) {
       res.status(401).json({ error: 'Incorrect username or password' })
     } else {
-      const payload = { username, fullname }
+      const payload = { username, fullname: user.fullname, userId: user.id }
       const token = jwt.sign(payload, process.env.SECRET, {
         expiresIn: '1h',
       })

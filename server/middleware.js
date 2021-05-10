@@ -12,6 +12,7 @@ const withAuth = (req, res, next) => {
       } else {
         req.username = decoded.username
         req.fullname = decoded.fullname
+        req.userId = decoded.userId
         next()
       }
     })

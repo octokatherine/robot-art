@@ -15,7 +15,9 @@ robotRouter.post('/', withAuth, async (req, res) => {
 })
 
 robotRouter.get('/', withAuth, async (req, res) => {
-  const robots = await prisma.robot.findMany()
+  const robots = await prisma.robot.findMany({
+    include: { votes: true },
+  })
   res.status(200).json(robots)
 })
 
