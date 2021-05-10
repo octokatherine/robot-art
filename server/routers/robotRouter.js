@@ -30,6 +30,9 @@ robotRouter.put('/:id', withAuth, async (req, res) => {
 })
 
 robotRouter.delete('/:id', withAuth, async (req, res) => {
+  await prisma.votes.deleteMany({
+    where: { robotId: Number(req.params.id) },
+  })
   const deletedRobot = await prisma.robot.delete({
     where: { id: Number(req.params.id) },
   })
