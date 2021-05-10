@@ -42,8 +42,10 @@ const Signup = ({ token, setToken }) => {
           alignItems="center"
           maxWidth="600px"
           mx="auto"
+          mt={[0, 6]}
           bg="white"
           p={4}
+          height={['100vh', 'auto']}
         >
           <StyledLogo alt="Mondo Robot logo" />
           <Input
