@@ -14,13 +14,18 @@ export const Card = styled.div`
   background-color: white;
   box-shadow: 0px 9px 15px -9px rgba(0, 0, 0, 0.12);
   border-radius: 8px;
+  /* width: 100%; */
   width: 390px;
   height: 530px;
+  overflow: hidden;
   ${space}
   ${layout}
   ${color}
   ${flexbox}
   ${position}
+  @media (max-width: 422px) {
+    width: calc(100vw - 32px);
+  }
 `
 
 const InputField = styled.input`
