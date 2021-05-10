@@ -11,6 +11,7 @@ const Admin = ({ robots, setRobots }) => {
   const uploadInput = useRef(null)
   const [url, setUrl] = useState('')
   const [newRobotName, setNewRobotName] = useState('')
+  const [uploadedFileName, setUploadedFileName] = useState('')
 
   const addRobot = (e) => {
     e.preventDefault()
@@ -22,8 +23,15 @@ const Admin = ({ robots, setRobots }) => {
       .then((response) => {
         setUrl('')
         setNewRobotName('')
+        setUploadedFileName('')
         setRobots((prev) => [response.data, ...prev])
       })
+  }
+
+  const clear = () => {
+    setNewRobotName('')
+    setUploadedFileName('')
+    uploadInput.current.value = ''
   }
 
   const handleTextInputChange = (e) => {
@@ -33,6 +41,8 @@ const Admin = ({ robots, setRobots }) => {
   const handleFileInputChange = () => {
     setUrl('')
     handleUpload()
+    let file = uploadInput.current.files[0]
+    setUploadedFileName(file.name)
   }
 
   const handleUpload = () => {
@@ -101,8 +111,14 @@ const Admin = ({ robots, setRobots }) => {
                 onChange={handleTextInputChange}
               />
               <Label htmlFor="image-upload">
-                <Upload />
-                Select Image to Upload
+                {uploadedFileName ? (
+                  uploadedFileName
+                ) : (
+                  <>
+                    <Upload />
+                    Select Image to Upload
+                  </>
+                )}
                 <FileInput
                   id="image-upload"
                   onChange={handleFileInputChange}
@@ -111,7 +127,7 @@ const Admin = ({ robots, setRobots }) => {
                 />
               </Label>
               <Box display="flex" justifyContent="space-between" alignItems="center" mt={4}>
-                <ClearButton>Clear</ClearButton>
+                <ClearButton onClick={clear}>Clear</ClearButton>
                 <PrimaryButton disabled={!(url && newRobotName)} type="submit">
                   Add Robot
                 </PrimaryButton>
@@ -150,6 +166,9 @@ const Form = styled.form`
 const ClearButton = styled.a`
   margin-inline: 44px;
   text-decoration: underline;
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 const FileInput = styled.input`
