@@ -5,14 +5,24 @@ import RobotCard from '../components/RobotCard'
 import axios from 'axios'
 
 const Robots = ({ robots, setRobots }) => {
-  const [userVotes, setUserVotes] = useState([])
+  const [userVote, setUserVote] = useState(null)
 
   useEffect(() => {
-    axios.get('/votes/me').then((res) => setUserVotes(res.data.map((vote) => vote.robotId)))
+    axios.get('/votes/me').then((res) => {
+      if (res.data) {
+        setUserVote(res.data.robotId)
+      }
+    })
   }, [])
 
   const castVote = (robotId) => {
-    axios.post(`/votes/${robotId}`).then((res) => console.log(res))
+    if (userVote) {
+      alert('You can only vote on one robot')
+    } else {
+      axios.post(`/votes/${robotId}`).then((res) => {
+        setUserVote(res.data.robotId)
+      })
+    }
   }
 
   return (
@@ -32,10 +42,10 @@ const Robots = ({ robots, setRobots }) => {
           <RobotCard key={robot.id} name={robot.name} image={robot.image}>
             <PrimaryButton
               width="150px"
-              disabled={userVotes.includes(robot.id)}
+              disabled={userVote === robot.id}
               onClick={() => castVote(robot.id)}
             >
-              {userVotes.includes(robot.id) ? 'Vote Cast' : 'Vote'}
+              {userVote === robot.id ? 'Vote Cast' : 'Vote'}
             </PrimaryButton>
           </RobotCard>
         ))}
