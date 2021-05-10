@@ -4,18 +4,20 @@ import { ReactComponent as HamburgerIcon } from '../images/hamburger-icon.svg'
 import { ReactComponent as CloseIcon } from '../images/close-icon.svg'
 import styled from 'styled-components'
 import { Box } from './base/'
-import { Link, Redirect, useLocation } from 'react-router-dom'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 import axios from 'axios'
 
 const Nav = ({ token, setToken, isAdmin, setIsAdmin }) => {
   const [isMenuVisible, setIsMenuVisible] = useState(false)
   const location = useLocation()
+  let history = useHistory()
 
   const logout = () => {
     axios.delete('/logout').then(() => {
       setIsAdmin(false)
       setToken(null)
       setIsMenuVisible(false)
+      history.push('/login')
     })
   }
 
@@ -29,7 +31,6 @@ const Nav = ({ token, setToken, isAdmin, setIsAdmin }) => {
         py="24px"
         px={[3, 4]}
       >
-        {!token && <Redirect to="/login" />}
         <Box display="flex" alignItems="center">
           <StyledLogo />
           <NavLinkContainer display="flex" alignItems="center">

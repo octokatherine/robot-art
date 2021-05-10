@@ -69,6 +69,9 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Router>
+        {token && (
+          <Nav token={token} setToken={setToken} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
+        )}
         <Switch>
           <Route exact path="/">
             <Redirect to="/robots" />
@@ -80,11 +83,9 @@ const App = () => {
             <Signup token={token} setToken={setToken} />
           </Route>
           <Route path="/robots">
-            <Nav token={token} setToken={setToken} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
             <Robots robots={robots} setRobots={setRobots} />
           </Route>
           <Route path="/admin">
-            <Nav token={token} setToken={setToken} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
             <Admin robots={robots} setRobots={setRobots} />
           </Route>
         </Switch>
