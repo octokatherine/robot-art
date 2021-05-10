@@ -25,4 +25,13 @@ userRouter.get('/', withAuth, async (req, res) => {
   res.status(200).json(users)
 })
 
+userRouter.get('/me', withAuth, async (req, res) => {
+  const user = await prisma.user.findUnique({
+    where: {
+      username: req.username,
+    },
+  })
+  res.status(200).json(user)
+})
+
 module.exports = userRouter

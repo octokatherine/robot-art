@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Box, Card, Input, PrimaryButton, SecondaryButton } from '../components/base'
 import styled from 'styled-components'
 import withAuth from '../components/withAuth'
+import withAdmin from '../components/withAdmin'
 import RobotCard from '../components/RobotCard'
 
 const Admin = ({ robots, setRobots }) => {
@@ -142,4 +143,4 @@ const ClearButton = styled.a`
   text-decoration: underline;
 `
 
-export default withAuth(Admin)
+export default withAdmin(withAuth(Admin))

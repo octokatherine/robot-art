@@ -4,9 +4,12 @@ import styled from 'styled-components'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 
-const Nav = ({ token, setToken }) => {
+const Nav = ({ token, setToken, isAdmin, setIsAdmin }) => {
   const logout = () => {
-    axios.delete('/logout').then(() => setToken(null))
+    axios.delete('/logout').then(() => {
+      setIsAdmin(false)
+      setToken(null)
+    })
   }
 
   return (
@@ -25,7 +28,7 @@ const Nav = ({ token, setToken }) => {
         <BoldLink to="/results">Results</BoldLink>
       </Box>
       <Box display="flex" alignItems="center">
-        <PlainLink to="/admin">Admin</PlainLink>
+        {isAdmin && <PlainLink to="/admin">Admin</PlainLink>}
         <PlainLink onClick={logout} to="/login">
           Log Out
         </PlainLink>

@@ -54,6 +54,19 @@ app.get('/checkToken', withAuth, function (req, res) {
   res.status(200).json({ token: req.cookies.token })
 })
 
+app.get('/checkAdmin', withAuth, async function (req, res) {
+  const user = await prisma.user.findFirst({
+    where: {
+      username: req.username,
+    },
+  })
+  if (user.isAdmin) {
+    return res.status(200).json({ admin: true })
+  } else {
+    return res.status(401).json({ error: 'user is not an admin' })
+  }
+})
+
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '.', 'public', 'index.html'))
 })

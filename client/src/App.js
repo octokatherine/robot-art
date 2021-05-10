@@ -36,6 +36,7 @@ const theme = {
 
 const App = () => {
   const [token, setToken] = useState(null)
+  const [isAdmin, setIsAdmin] = useState(false)
   const [robots, setRobots] = useState([])
 
   useEffect(() => {
@@ -45,6 +46,14 @@ const App = () => {
         .then((response) => setRobots(response.data))
         .catch((err) => console.log(err))
     }
+    axios
+      .get('users/me')
+      .then((res) => {
+        setIsAdmin(res.data.isAdmin)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }, [token])
 
   useEffect(() => {
@@ -71,11 +80,11 @@ const App = () => {
             <Signup token={token} setToken={setToken} />
           </Route>
           <Route path="/robots">
-            <Nav token={token} setToken={setToken} />
+            <Nav token={token} setToken={setToken} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
             <Robots robots={robots} setRobots={setRobots} />
           </Route>
           <Route path="/admin">
-            <Nav token={token} setToken={setToken} />
+            <Nav token={token} setToken={setToken} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
             <Admin robots={robots} setRobots={setRobots} />
           </Route>
         </Switch>
