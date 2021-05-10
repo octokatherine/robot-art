@@ -21,7 +21,7 @@ const Admin = ({ robots, setRobots }) => {
       .then((response) => {
         setUrl('')
         setNewRobotName('')
-        setRobots((prev) => [...prev, response.data])
+        setRobots((prev) => [response.data, ...prev])
       })
   }
 
