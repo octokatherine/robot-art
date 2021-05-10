@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import withAuth from '../components/withAuth'
 import withAdmin from '../components/withAdmin'
 import RobotCard from '../components/RobotCard'
+import { ReactComponent as UploadIcon } from '../images/upload-icon.svg'
 
 const Admin = ({ robots, setRobots }) => {
   const uploadInput = useRef(null)
@@ -87,7 +88,7 @@ const Admin = ({ robots, setRobots }) => {
         justifyContent="center"
         justifyItems="center"
       >
-        <Card p={3} display="flex" flexDirection="column" alignItems="center">
+        <Card p="24px" display="flex" flexDirection="column" alignItems="center">
           <Form onSubmit={addRobot}>
             <H3>Add Robot</H3>
             <Box>
@@ -99,8 +100,16 @@ const Admin = ({ robots, setRobots }) => {
                 value={newRobotName}
                 onChange={handleTextInputChange}
               />
-              <input onChange={handleFileInputChange} ref={uploadInput} type="file" />
-              <Box height="208px"></Box>
+              <Label htmlFor="image-upload">
+                <Upload />
+                Select Image to Upload
+                <FileInput
+                  id="image-upload"
+                  onChange={handleFileInputChange}
+                  ref={uploadInput}
+                  type="file"
+                />
+              </Label>
               <Box display="flex" justifyContent="space-between" alignItems="center" mt={4}>
                 <ClearButton>Clear</ClearButton>
                 <PrimaryButton disabled={!(url && newRobotName)} type="submit">
@@ -141,6 +150,27 @@ const Form = styled.form`
 const ClearButton = styled.a`
   margin-inline: 44px;
   text-decoration: underline;
+`
+
+const FileInput = styled.input`
+  display: none;
+`
+
+const Label = styled.label`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  border-radius: 8px;
+  height: 200px;
+  cursor: pointer;
+  background-color: #eceef0;
+  border: 2px dashed #737475;
+`
+
+const Upload = styled(UploadIcon)`
+  margin-bottom: 16px;
 `
 
 export default withAdmin(withAuth(Admin))

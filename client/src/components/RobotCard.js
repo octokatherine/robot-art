@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const RobotCard = ({ name, image, children }) => {
   return (
     <Card
-      p={3}
+      p="24px"
       display="flex"
       flexDirection="column"
       alignItems="center"

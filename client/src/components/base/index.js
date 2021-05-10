@@ -62,17 +62,19 @@ export const PrimaryButton = styled.button`
   font-size: 1.2rem;
   padding-block: 0.8em;
   width: 100%;
-  border: none;
+  border: 2px solid ${(props) => props.theme.palette.gray3};
   ${space}
   ${layout}
 
   &:hover {
     cursor: pointer;
     background: ${(props) => props.theme.palette.gray2};
+    border: 2px solid ${(props) => props.theme.palette.gray2};
   }
 
   &:disabled {
     background: ${(props) => props.theme.palette.gray1};
+    border: 2px solid ${(props) => props.theme.palette.gray1};
     color: #41424266;
   }
 `
