@@ -21,11 +21,11 @@ const RobotCard = ({ name, image, children }) => {
 
 const H3 = styled.h3`
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 `
 
 const Image = styled.img`
-  height: 320px;
+  height: 310px;
 `
 
 export default RobotCard
