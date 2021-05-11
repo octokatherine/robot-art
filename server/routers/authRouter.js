@@ -1,6 +1,5 @@
 const express = require('express')
 const bcrypt = require('bcrypt')
-const path = require('path')
 const jwt = require('jsonwebtoken')
 const { sign_s3 } = require('../awsUpload')
 const withAuth = require('../middleware')
