@@ -13,7 +13,7 @@ const Nav = ({ token, setToken, isAdmin, setIsAdmin }) => {
   let history = useHistory()
 
   const logout = () => {
-    axios.delete('/logout').then(() => {
+    axios.delete('/api/logout').then(() => {
       setIsAdmin(false)
       setToken(null)
       setIsMenuVisible(false)

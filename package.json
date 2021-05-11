@@ -6,13 +6,20 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "npm install --prefix server && npm install --prefix client",
-    "dev": "npm run server & npm run client",
-    "server": "npm run watch --prefix server",
+    "dev": "npm run watch --prefix server & npm run client",
+    "server": "npm run start --prefix server",
     "client": "npm start --prefix client",
-    "start": "npm install && npm run build --prefix client && npm run server",
+    "prestart": "npm run build --prefix client && npx prisma migrate deploy && npm run seed",
+    "start": "npm run server",
     "seed": "npm run seed --prefix server"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^2.22.1"
+  },
+  "devDependencies": {
+    "prisma": "^2.22.1"
+  }
 }

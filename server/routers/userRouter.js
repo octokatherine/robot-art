@@ -1,4 +1,4 @@
-const prisma = require('../prismaConnection')
+const prisma = require('../../prismaConnection')
 const express = require('express')
 const withAuth = require('../middleware')
 const bcrypt = require('bcrypt')

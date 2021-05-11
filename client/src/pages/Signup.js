@@ -23,9 +23,9 @@ const Signup = ({ token, setToken }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     axios
-      .post('/users', { username, password, fullname })
+      .post('/api/users', { username, password, fullname })
       .then(() => {
-        axios.post('/login', { username, password }).then((res) => setToken(res.data))
+        axios.post('/api/login', { username, password }).then((res) => setToken(res.data))
       })
       .catch((err) => {
         console.error(err)

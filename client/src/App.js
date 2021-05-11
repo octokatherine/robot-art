@@ -42,12 +42,12 @@ const App = () => {
   useEffect(() => {
     if (token) {
       axios
-        .get('/robots')
+        .get('/api/robots')
         .then((response) => setRobots(response.data))
         .catch((err) => console.log(err))
     }
     axios
-      .get('users/me')
+      .get('/api/users/me')
       .then((res) => {
         setIsAdmin(res.data.isAdmin)
       })
@@ -58,7 +58,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get('/checkToken')
+      .get('/api/checkToken')
       .then((res) => setToken(res.data.token))
       .catch((err) => {
         console.log(err)

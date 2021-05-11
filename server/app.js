@@ -12,9 +12,13 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, '.', 'public')))
 
-app.use('/users', userRouter)
-app.use('/robots', robotRouter)
-app.use('/votes', voteRouter)
-app.use(authRouter)
+app.use('/api/users', userRouter)
+app.use('/api/robots', robotRouter)
+app.use('/api/votes', voteRouter)
+app.use('/api', authRouter)
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '.', 'public', 'index.html'))
+})
 
 module.exports = app

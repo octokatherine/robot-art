@@ -10,7 +10,7 @@ const withAuth = (ComponentToProtect) => (props) => {
     let unmounted = false
     let source = axios.CancelToken.source()
     axios
-      .get('/checkToken', {
+      .get('/api/checkToken', {
         cancelToken: source.token,
       })
       .then(() => {

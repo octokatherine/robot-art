@@ -4,7 +4,7 @@ const path = require('path')
 const jwt = require('jsonwebtoken')
 const { sign_s3 } = require('../awsUpload')
 const withAuth = require('../middleware')
-const prisma = require('../prismaConnection')
+const prisma = require('../../prismaConnection')
 
 const authRouter = express.Router()
 
@@ -53,10 +53,6 @@ authRouter.get('/checkAdmin', withAuth, async function (req, res) {
   } else {
     return res.status(401).json({ error: 'user is not an admin' })
   }
-})
-
-authRouter.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '.', 'public', 'index.html'))
 })
 
 module.exports = authRouter

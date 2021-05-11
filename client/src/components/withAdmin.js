@@ -10,7 +10,7 @@ const withAdmin = (ComponentToProtect) => (props) => {
     let unmounted = false
     let source = axios.CancelToken.source()
     axios
-      .get('/checkAdmin', {
+      .get('/api/checkAdmin', {
         cancelToken: source.token,
       })
       .then(() => {

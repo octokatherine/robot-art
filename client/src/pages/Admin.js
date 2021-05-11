@@ -16,7 +16,7 @@ const Admin = ({ robots, setRobots }) => {
   const addRobot = (e) => {
     e.preventDefault()
     axios
-      .post('/robots', {
+      .post('/api/robots', {
         name: newRobotName,
         image: url,
       })
@@ -52,7 +52,7 @@ const Admin = ({ robots, setRobots }) => {
     let fileName = fileParts[0]
     let fileType = fileParts[1]
     axios
-      .post('/sign_s3', {
+      .post('/api/sign_s3', {
         fileName: fileName,
         fileType: fileType,
       })
@@ -78,7 +78,7 @@ const Admin = ({ robots, setRobots }) => {
 
   const onDelete = (id) => {
     axios
-      .delete(`/robots/${id}`)
+      .delete(`/api/robots/${id}`)
       .then(() => {
         setRobots((prev) => prev.filter((robot) => robot.id !== id))
       })
