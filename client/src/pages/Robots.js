@@ -21,6 +21,14 @@ const Robots = ({ robots, setRobots }) => {
     } else {
       axios.post(`/api/votes/${robotId}`).then((res) => {
         setUserVote(res.data.robotId)
+        setRobots((prev) => {
+          return prev.map((robot) => {
+            if (robot.id === robotId) {
+              robot.votes = [...robot.votes, res.data]
+            }
+            return robot
+          })
+        })
       })
     }
   }

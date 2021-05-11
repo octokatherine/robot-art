@@ -8,6 +8,7 @@ import Robots from './pages/Robots'
 import Admin from './pages/Admin'
 import Nav from './components/Nav'
 import axios from 'axios'
+import Results from './pages/Results'
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -84,6 +85,9 @@ const App = () => {
           </Route>
           <Route path="/robots">
             <Robots robots={robots} setRobots={setRobots} />
+          </Route>
+          <Route path="/results">
+            <Results robots={robots} />
           </Route>
           <Route path="/admin">
             <Admin robots={robots} setRobots={setRobots} />
