@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npm install --prefix server && npm install --prefix client",
-    "watch": "npm run server & npm run client",
+    "install": "npm install --prefix server && npm install --prefix client",
+    "dev": "npm run server & npm run client",
     "server": "npm run watch --prefix server",
     "client": "npm start --prefix client",
-    "start": "npm run build --prefix client && npm run server",
+    "start": "npm install && npm run build --prefix client && npm run server",
     "seed": "npm run seed --prefix server"
   },
   "keywords": [],
