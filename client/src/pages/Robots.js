@@ -8,7 +8,7 @@ const Robots = ({ robots, setRobots }) => {
   const [userVote, setUserVote] = useState(null)
 
   useEffect(() => {
-    axios.get('/votes/me').then((res) => {
+    axios.get('/api/votes/me').then((res) => {
       if (res.data) {
         setUserVote(res.data.robotId)
       }
@@ -19,7 +19,7 @@ const Robots = ({ robots, setRobots }) => {
     if (userVote) {
       alert('You can only vote on one robot')
     } else {
-      axios.post(`/votes/${robotId}`).then((res) => {
+      axios.post(`/api/votes/${robotId}`).then((res) => {
         setUserVote(res.data.robotId)
       })
     }

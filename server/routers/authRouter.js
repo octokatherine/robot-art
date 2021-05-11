@@ -55,8 +55,4 @@ authRouter.get('/checkAdmin', withAuth, async function (req, res) {
   }
 })
 
-authRouter.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '.', 'public', 'index.html'))
-})
-
 module.exports = authRouter

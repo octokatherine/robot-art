@@ -20,7 +20,7 @@ const Login = ({ token, setToken }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     axios
-      .post('/login', { username, password })
+      .post('/api/login', { username, password })
       .then((res) => setToken(res.data.token))
       .catch((err) => {
         console.error(err)
