@@ -9,7 +9,7 @@
     "dev": "npm run server & npm run client",
     "server": "npm run watch --prefix server",
     "client": "npm start --prefix client",
-    "start": "npm install && npm run build --prefix client && npm run server",
+    "start": "npm run build --prefix client && npm run server",
     "seed": "npm run seed --prefix server"
   },
   "keywords": [],
