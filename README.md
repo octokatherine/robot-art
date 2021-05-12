@@ -27,7 +27,7 @@ https://robot-art.herokuapp.com/
   npm install
 ```
 
-- Configure environment variables in section below. You need an Amazon S3 bucket and a PostgreSQL database
+- Configure environment variables in section below. You need to create an Amazon S3 bucket and a local PostgreSQL database
 
 - Migrate the Database
 
@@ -46,7 +46,7 @@ https://robot-art.herokuapp.com/
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`DATABASE_URL` 
+`DATABASE_URL` with the format: "postgresql://{user}@localhost:5432/{database_name}?schema=public"
 
 `SECRET`
 
