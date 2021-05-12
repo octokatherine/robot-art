@@ -7,7 +7,7 @@ import { Box } from './base/'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import axios from 'axios'
 
-const Nav = ({ token, setToken, isAdmin, setIsAdmin }) => {
+const Nav = ({ setToken, isAdmin, setIsAdmin, setUserVote }) => {
   const [isMenuVisible, setIsMenuVisible] = useState(false)
   const location = useLocation()
   let history = useHistory()
@@ -17,6 +17,7 @@ const Nav = ({ token, setToken, isAdmin, setIsAdmin }) => {
       setIsAdmin(false)
       setToken(null)
       setIsMenuVisible(false)
+      setUserVote(null)
       history.push('/login')
     })
   }

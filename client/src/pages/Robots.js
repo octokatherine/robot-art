@@ -6,11 +6,18 @@ import axios from 'axios'
 
 const Robots = ({ robots, setRobots, userVote, setUserVote }) => {
   useEffect(() => {
-    axios.get('/api/votes/me').then((res) => {
-      if (res.data) {
-        setUserVote(res.data.robotId)
-      }
-    })
+    axios
+      .get('/api/votes/me')
+      .then((res) => {
+        if (res.data) {
+          setUserVote(res.data.robotId)
+        } else {
+          setUserVote(null)
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }, [])
 
   const castVote = (robotId) => {

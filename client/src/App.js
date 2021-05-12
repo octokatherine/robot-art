@@ -81,7 +81,13 @@ const App = () => {
         <GlobalStyle />
         <Router>
           {token && (
-            <Nav token={token} setToken={setToken} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
+            <Nav
+              token={token}
+              setToken={setToken}
+              isAdmin={isAdmin}
+              setIsAdmin={setIsAdmin}
+              setUserVote={setUserVote}
+            />
           )}
           <Switch>
             <Route exact path="/">
