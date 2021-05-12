@@ -42,6 +42,7 @@ const App = () => {
   const [isAdmin, setIsAdmin] = useState(false)
   const [robots, setRobots] = useState([])
   const [userVote, setUserVote] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     if (token) {
@@ -63,12 +64,16 @@ const App = () => {
   useEffect(() => {
     axios
       .get('/api/checkToken')
-      .then((res) => setToken(res.data.token))
+      .then((res) => {
+        setToken(res.data.token)
+        setLoading(false)
+      })
       .catch((err) => {
         console.log(err)
       })
   }, [])
 
+  if (loading) return null
   return (
     <TokenContext.Provider value={{ token, setToken }}>
       <ThemeProvider theme={theme}>
