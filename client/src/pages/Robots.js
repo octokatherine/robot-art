@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { Box, PrimaryButton } from '../components/base'
 import withAuth from '../components/withAuth'
 import RobotCard from '../components/RobotCard'
