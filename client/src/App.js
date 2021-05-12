@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
@@ -35,6 +35,8 @@ const theme = {
   },
 }
 
+export const TokenContext = React.createContext(null)
+
 const App = () => {
   const [token, setToken] = useState(null)
   const [isAdmin, setIsAdmin] = useState(false)
@@ -67,34 +69,36 @@ const App = () => {
   }, [])
 
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Router>
-        {token && (
-          <Nav token={token} setToken={setToken} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
-        )}
-        <Switch>
-          <Route exact path="/">
-            <Redirect to="/robots" />
-          </Route>
-          <Route path="/login">
-            <Login token={token} setToken={setToken} />
-          </Route>
-          <Route path="/signup">
-            <Signup token={token} setToken={setToken} />
-          </Route>
-          <Route path="/robots">
-            <Robots robots={robots} setRobots={setRobots} />
-          </Route>
-          <Route path="/results">
-            <Results robots={robots} />
-          </Route>
-          <Route path="/admin">
-            <Admin robots={robots} setRobots={setRobots} />
-          </Route>
-        </Switch>
-      </Router>
-    </ThemeProvider>
+    <TokenContext.Provider value={{ token, setToken }}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Router>
+          {token && (
+            <Nav token={token} setToken={setToken} isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
+          )}
+          <Switch>
+            <Route exact path="/">
+              <Redirect to="/robots" />
+            </Route>
+            <Route path="/login">
+              <Login token={token} setToken={setToken} />
+            </Route>
+            <Route path="/signup">
+              <Signup token={token} setToken={setToken} />
+            </Route>
+            <Route path="/robots">
+              <Robots robots={robots} setRobots={setRobots} />
+            </Route>
+            <Route path="/results">
+              <Results robots={robots} />
+            </Route>
+            <Route path="/admin">
+              <Admin robots={robots} setRobots={setRobots} />
+            </Route>
+          </Switch>
+        </Router>
+      </ThemeProvider>
+    </TokenContext.Provider>
   )
 }
 
