@@ -24,7 +24,8 @@ const Admin = ({ robots, setRobots }) => {
         setUrl('')
         setNewRobotName('')
         setUploadedFileName('')
-        setRobots((prev) => [response.data, ...prev])
+        const newRobot = { ...response.data, votes: [] }
+        setRobots((prev) => [newRobot, ...prev])
       })
   }
 
