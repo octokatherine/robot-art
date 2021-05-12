@@ -46,15 +46,14 @@ https://robot-art.herokuapp.com/
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`DATABASE_URL` with the format: "postgresql://{user}@localhost:5432/{database_name}?schema=public"
+`DATABASE_URL` - postgresql://{user}@localhost:5432/{database_name}?schema=public
 
-`SECRET`
+`SECRET` - example_secret
 
-`AWSAccessKeyId`
+`AWSAccessKeyId` 
+`AWSSecretKey` - In AWS click on your name in the top right corner, then "My Security Credentials". Then under Access keys, you can get your AWSAccessKeyId and AWSSecretKey
 
-`AWSSecretKey`
-
-`Bucket`
+`Bucket` - s3_bucket_name
 
   
 ## Tech Stack
