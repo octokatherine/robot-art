@@ -4,9 +4,7 @@ import withAuth from '../components/withAuth'
 import RobotCard from '../components/RobotCard'
 import axios from 'axios'
 
-const Robots = ({ robots, setRobots }) => {
-  const [userVote, setUserVote] = useState(null)
-
+const Robots = ({ robots, setRobots, userVote, setUserVote }) => {
   useEffect(() => {
     axios.get('/api/votes/me').then((res) => {
       if (res.data) {

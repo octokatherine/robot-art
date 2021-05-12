@@ -41,6 +41,7 @@ const App = () => {
   const [token, setToken] = useState(null)
   const [isAdmin, setIsAdmin] = useState(false)
   const [robots, setRobots] = useState([])
+  const [userVote, setUserVote] = useState(null)
 
   useEffect(() => {
     if (token) {
@@ -87,7 +88,12 @@ const App = () => {
               <Signup token={token} setToken={setToken} />
             </Route>
             <Route path="/robots">
-              <Robots robots={robots} setRobots={setRobots} />
+              <Robots
+                robots={robots}
+                setRobots={setRobots}
+                userVote={userVote}
+                setUserVote={setUserVote}
+              />
             </Route>
             <Route path="/results">
               <Results robots={robots} />
