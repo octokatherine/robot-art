@@ -9,7 +9,7 @@
     "dev": "npm run watch --prefix server & npm run client",
     "server": "npm run start --prefix server",
     "client": "npm start --prefix client",
-    "prestart": "npm run build --prefix client && npx prisma migrate deploy",
+    "prestart": "npm run build --prefix client && npx prisma migrate deploy && npm run seed",
     "start": "npm run server",
     "seed": "npm run seed --prefix server"
   },
