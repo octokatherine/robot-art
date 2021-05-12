@@ -55,6 +55,7 @@ const Signup = ({ token, setToken }) => {
             type="text"
             value={fullname}
             onChange={handleChange}
+            required
           />
           <Input
             mb={4}
@@ -63,6 +64,7 @@ const Signup = ({ token, setToken }) => {
             type="text"
             value={username}
             onChange={handleChange}
+            required
           />
           <Input
             mb={4}
@@ -71,6 +73,7 @@ const Signup = ({ token, setToken }) => {
             type="password"
             value={password}
             onChange={handleChange}
+            required
           />
           <PrimaryButton mt={3} type="submit">
             Register

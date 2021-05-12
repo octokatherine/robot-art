@@ -110,6 +110,7 @@ const Admin = ({ robots, setRobots }) => {
                 type="text"
                 value={newRobotName}
                 onChange={handleTextInputChange}
+                required
               />
               <Label htmlFor="image-upload">
                 {uploadedFileName ? (
@@ -125,6 +126,7 @@ const Admin = ({ robots, setRobots }) => {
                   onChange={handleFileInputChange}
                   ref={uploadInput}
                   type="file"
+                  required
                 />
               </Label>
               <Box display="flex" justifyContent="space-between" alignItems="center" mt={4}>
